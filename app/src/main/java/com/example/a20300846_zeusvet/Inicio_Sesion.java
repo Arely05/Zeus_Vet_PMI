@@ -26,7 +26,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Inicio extends AppCompatActivity {
+public class Inicio_Sesion extends AppCompatActivity { // ⬅️ Clase renombrada y corregida
 
     EditText Usuario, Contrasena;
     Button ButtonInicio;
@@ -36,7 +36,7 @@ public class Inicio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_inicio);
+        setContentView(R.layout.activity_inicio_sesion); // ⬅️ Layout corregido
 
         Usuario = findViewById(R.id.Mod_Usuario);
         Contrasena = findViewById(R.id.Mod_Contraseña);
@@ -61,7 +61,7 @@ public class Inicio extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 try {
                                     if (response.getInt("usr") != -1) {
-                                        Intent principal = new Intent(Inicio.this, MainActivity.class);
+                                        Intent principal = new Intent(Inicio_Sesion.this, MainActivity.class);
                                         SharedPreferences.Editor editor = archivo.edit();
                                         editor.putInt("id_usuario", response.getInt("usr"));
                                         editor.apply();
@@ -70,7 +70,7 @@ public class Inicio extends AppCompatActivity {
                                     } else {
                                         Usuario.setText("");
                                         Contrasena.setText("");
-                                        Toast.makeText(Inicio.this,
+                                        Toast.makeText(Inicio_Sesion.this,
                                                 "Usuario o Contraseña Incorrectos",
                                                 Toast.LENGTH_SHORT).show();
                                     }
@@ -78,7 +78,7 @@ public class Inicio extends AppCompatActivity {
                                     throw new RuntimeException(e);
                                 }
 
-                                Toast.makeText(Inicio.this,
+                                Toast.makeText(Inicio_Sesion.this,
                                         response.toString(),
                                         Toast.LENGTH_SHORT).show();
                             }
@@ -91,27 +91,9 @@ public class Inicio extends AppCompatActivity {
                         }
                 );
 
-                RequestQueue lanzarPeticion = Volley.newRequestQueue(Inicio.this);
+                RequestQueue lanzarPeticion = Volley.newRequestQueue(Inicio_Sesion.this);
                 lanzarPeticion.add(pet);
             }
-            /*if (Usuario.getText().toString().equals("GUSA") &&
-                    Contrasena.getText().toString().equals("1234567")) {
-
-                SharedPreferences.Editor editor = archivo.edit();
-                editor.putString("Usuario", "GUSA");
-                editor.putString("Contraseña", "1234567");
-                editor.apply();
-
-                Intent inicio = new Intent(Inicio.this, MainActivity.class);
-                startActivity(inicio);
-
-            } else {
-
-                Usuario.setText("");
-                Contrasena.setText("");
-                Toast.makeText(Inicio.this, "Usuario o Contraseña Incorrecto", Toast.LENGTH_SHORT).show();
-
-            */
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

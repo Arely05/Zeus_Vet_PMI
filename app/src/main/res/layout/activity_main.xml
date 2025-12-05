@@ -27,80 +27,96 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingBottom="10dp"
-                android:text="REGISTRAR PRODUCTO"
-                android:textSize="22sp"
+                android:paddingBottom="5dp"
+                android:text="REGISTRAR VENTA"
+                android:textSize="20sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="15dp"
                 />
 
             <EditText
-                android:id="@+id/NombreEquipo"
+                android:id="@+id/NombreComprador"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Nombre del Producto"
-                android:paddingStart="16dp"
-                android:layout_marginBottom="12dp"
+                android:hint="Nombre del Comprador"
+                android:paddingStart="15dp"
+                android:layout_marginBottom="10dp"
                 android:inputType="textCapWords"
-                />
-
-            <EditText
-                android:id="@+id/NombreCapitan"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Descripción"
-                android:paddingStart="16dp"
-                android:layout_marginBottom="12dp"
-                android:inputType="textMultiLine"
                 />
 
             <EditText
                 android:id="@+id/Telefono"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Precio"
+                android:hint="Teléfono"
                 android:paddingStart="16dp"
-                android:layout_marginBottom="12dp"
-                android:inputType="numberDecimal"
+                android:layout_marginBottom="10dp"
+                android:inputType="phone"
                 />
 
             <EditText
-                android:id="@+id/HoraInscripcion"
+                android:id="@+id/Correo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Stock (Cantidad en inventario)"
+                android:hint="Correo"
                 android:paddingStart="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="10dp"
+                android:inputType="textEmailAddress"
+                />
+
+            <EditText
+                android:id="@+id/NombreProducto"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Nombre del Producto"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="10dp"
+                android:inputType="textCapWords"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo de Producto"
+                android:textColor="@color/Black"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"/>
+            <Spinner
+                android:id="@+id/TipoProducto"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:drawable/btn_dropdown"
+                />
+
+            <EditText
+                android:id="@+id/CantidadComprada"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Cantidad de Productos Comprados"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="10dp"
                 android:inputType="number"
                 />
 
             <EditText
-                android:id="@+id/TiempoInscripcion"
+                android:id="@+id/TotalCompra"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Tipo de Producto"
+                android:hint="Total de la Compra"
                 android:paddingStart="16dp"
-                android:layout_marginBottom="12dp"
-                android:inputType="textCapSentences"
-                />
-
-            <EditText
-                android:id="@+id/Pago"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Cantidad de Producto (Ej: 100ml, 5kg)"
-                android:paddingStart="16dp"
-                android:layout_marginBottom="24dp"
-                android:inputType="text"
+                android:layout_marginBottom="10dp"
+                android:inputType="numberDecimal"
                 />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="REGISTRAR PRODUCTO"
+                android:text="REGISTRAR VENTA"
                 android:textSize="20sp"
                 android:textColor="@color/White"
                 android:backgroundTint="@color/Primary"
@@ -113,7 +129,7 @@
                 android:id="@+id/ButtonVer"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="VER PRODUCTOS"
+                android:text="VER VENTAS"
                 android:textSize="20sp"
                 android:textColor="@color/White"
                 android:backgroundTint="@color/Primary"

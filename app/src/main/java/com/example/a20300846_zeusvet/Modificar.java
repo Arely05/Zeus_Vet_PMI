@@ -1,141 +1,142 @@
-package com.example.torneo;
+package com.example.a20300846_zeusvet;
 
-import android.content.Intent; // CRÍTICO: Importar Intent
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import Pojo.producto;
 import Global.info;
+import Pojo.producto;
 
+public class Modificar extends AppCompatActivity {
 
-public class modificar extends AppCompatActivity {
+    EditText Mod_NombreComprador, Mod_Telefono, Mod_Correo, Mod_NombreProducto, Mod_Cantidad, Mod_TotalCompra;
+    Spinner Mod_TipoProducto;
 
-    EditText EdtNombreEquipo, EdtNombreCapitan, EdtTelefono, EdtHora, EdtFecha, EdtPago;
-    Button ButtonAnterior, ButtonGuardar, ButtonSiguiente;
-    private int indiceActual = 0;
-    private Toolbar toolbar;
+    Button btnAnterior, btnGuardar, btnSiguiente;
+
+    int posicion = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar);
 
-        // 1. Configurar el Toolbar
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // ---------------------------
+        // 1. RECIBIR LA POSICIÓN
+        // ---------------------------
+        posicion = getIntent().getIntExtra("posicion", 0);
 
-        // 2. Enlazar Vistas (EditTexts)
-        EdtNombreEquipo = findViewById(R.id.Mod_NombreEquipo);
-        EdtNombreCapitan = findViewById(R.id.Mod_NombreCapitan);
-        EdtTelefono = findViewById(R.id.Mod_Telefono);
-        EdtHora = findViewById(R.id.Mod_HoraInscripcion);
-        EdtFecha = findViewById(R.id.Mod_TiempoInscripcion);
-        EdtPago = findViewById(R.id.Mod_Pago);
+        // ---------------------------
+        // 2. REFERENCIAS XML
+        // ---------------------------
+        Mod_NombreComprador = findViewById(R.id.Mod_NombreComprador);
+        Mod_Telefono = findViewById(R.id.Mod_Telefono);
+        Mod_Correo = findViewById(R.id.Mod_Correo);
+        Mod_NombreProducto = findViewById(R.id.Mod_NombreProducto);
+        Mod_Cantidad = findViewById(R.id.Mod_Cantidad);
+        Mod_TotalCompra = findViewById(R.id.Mod_TotalCompra);
 
-        // 3. Enlazar botones del layout
-        ButtonAnterior = findViewById(R.id.Button_Anterior);
-        ButtonGuardar = findViewById(R.id.Button_Guardar);
-        ButtonSiguiente = findViewById(R.id.Button_Siguiente);
+        Mod_TipoProducto = findViewById(R.id.Mod_TiempoInscripcion);
 
-        // CRÍTICO: Recibir la posición pasada desde adaptadorver.java
-        Intent intent = getIntent();
-        if (intent.hasExtra("posicion")) {
-            // Si el adaptador pasó la posición, la usamos como punto de inicio
-            indiceActual = intent.getIntExtra("posicion", 0);
-        }
+        btnAnterior = findViewById(R.id.Button_Anterior);
+        btnGuardar = findViewById(R.id.Button_Guardar);
+        btnSiguiente = findViewById(R.id.Button_Siguiente);
 
-        if (!info.lista.isEmpty()) {
-            mostrarEquipo(indiceActual);
-        } else {
-            Toast.makeText(this, "No Hay Productos Registrados", Toast.LENGTH_SHORT).show();
-        }
+        // ---------------------------
+        // 3. SPINNER (asumiendo tipos)
+        // ---------------------------
+        String[] tipos = {"Pelo", "Vacuna", "Servicio", "Producto General"};
+        ArrayAdapter<String> adap = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, tipos);
+        Mod_TipoProducto.setAdapter(adap);
 
-        // 4. Configurar Listeners para los botones
-        ButtonSiguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (info.lista.isEmpty()) return;
-                indiceActual = (indiceActual + 1) % info.lista.size();
-                mostrarEquipo(indiceActual);
+        // ---------------------------
+        // 4. CARGAR DATOS DEL PRODUCTO
+        // ---------------------------
+        cargarDatos();
+
+        // ---------------------------
+        // 5. BOTÓN GUARDAR
+        // ---------------------------
+        btnGuardar.setOnClickListener(v -> guardar());
+
+        // ---------------------------
+        // 6. BOTÓN SIGUIENTE
+        // ---------------------------
+        btnSiguiente.setOnClickListener(v -> {
+            if (posicion < info.lista.size() - 1) {
+                posicion++;
+                cargarDatos();
+            } else {
+                Toast.makeText(this, "Último registro", Toast.LENGTH_SHORT).show();
             }
         });
 
-        ButtonAnterior.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (info.lista.isEmpty()) return;
-                indiceActual = (indiceActual - 1 + info.lista.size()) % info.lista.size();
-                mostrarEquipo(indiceActual);
+        // ---------------------------
+        // 7. BOTÓN ANTERIOR
+        // ---------------------------
+        btnAnterior.setOnClickListener(v -> {
+            if (posicion > 0) {
+                posicion--;
+                cargarDatos();
+            } else {
+                Toast.makeText(this, "Primer registro", Toast.LENGTH_SHORT).show();
             }
         });
 
-        ButtonGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (info.lista.isEmpty()) return;
-                guardarCambios(indiceActual);
-            }
-        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_modificar, menu);
-        return super.onCreateOptionsMenu(menu);
+    // ====================================================
+    //      CARGAR INFORMACIÓN DEL REGISTRO
+    // ====================================================
+    private void cargarDatos() {
+        producto p = info.lista.get(posicion);
+
+        Mod_NombreComprador.setText(p.getNombreComprador());
+        Mod_Telefono.setText(p.getTelefono());
+        Mod_Correo.setText(p.getCorreo());
+        Mod_NombreProducto.setText(p.getNombreProducto());
+        Mod_Cantidad.setText(p.getCantidad());
+        Mod_TotalCompra.setText(p.getTotalCompra());
+
+        // Seleccionar el spinner según el tipo guardado
+        ArrayAdapter adapter = (ArrayAdapter) Mod_TipoProducto.getAdapter();
+        int pos = adapter.getPosition(p.getTipoProducto());
+        if (pos >= 0) Mod_TipoProducto.setSelection(pos);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (info.lista.isEmpty()) return super.onOptionsItemSelected(item);
+    // ====================================================
+    //                  GUARDAR CAMBIOS
+    // ====================================================
+    private void guardar() {
 
-        int id = item.getItemId();
+        if (Mod_NombreComprador.getText().toString().isEmpty() ||
+                Mod_NombreProducto.getText().toString().isEmpty() ||
+                Mod_Cantidad.getText().toString().isEmpty() ||
+                Mod_TotalCompra.getText().toString().isEmpty()) {
 
-        if (id == R.id.action_siguiente) {
-            indiceActual = (indiceActual + 1) % info.lista.size();
-            mostrarEquipo(indiceActual);
-            return true;
-        } else if (id == R.id.action_anterior) {
-            indiceActual = (indiceActual - 1 + info.lista.size()) % info.lista.size();
-            mostrarEquipo(indiceActual);
-            return true;
-        } else if (id == R.id.action_guardar) {
-            guardarCambios(indiceActual);
-            return true;
+            Toast.makeText(this, "Faltan campos obligatorios", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        return super.onOptionsItemSelected(item);
-    }
+        producto p = info.lista.get(posicion);
 
-    private void mostrarEquipo(int indice) {
-        producto productoActual = info.lista.get(indice);
-        // Mapeo a los 6 getters
-        EdtNombreEquipo.setText(productoActual.getNomProd());
-        EdtNombreCapitan.setText(productoActual.getDescripcion());
-        EdtTelefono.setText(productoActual.getPrecio());
-        EdtHora.setText(productoActual.getStock());
-        EdtFecha.setText(productoActual.getTipoProducto());
-        EdtPago.setText(productoActual.getCantProducto());
-    }
+        p.setNombreComprador(Mod_NombreComprador.getText().toString());
+        p.setTelefono(Mod_Telefono.getText().toString());
+        p.setCorreo(Mod_Correo.getText().toString());
+        p.setNombreProducto(Mod_NombreProducto.getText().toString());
+        p.setCantidad(Mod_Cantidad.getText().toString());
+        p.setTotalCompra(Mod_TotalCompra.getText().toString());
+        p.setTipoProducto(Mod_TipoProducto.getSelectedItem().toString());
 
-    private void guardarCambios(int indice) {
-        producto productoActual = info.lista.get(indice);
-        // Mapeo a los 6 setters
-        productoActual.setNomProd(EdtNombreEquipo.getText().toString());
-        productoActual.setDescripcion(EdtNombreCapitan.getText().toString());
-        productoActual.setPrecio(EdtTelefono.getText().toString());
-        productoActual.setStock(EdtHora.getText().toString());
-        productoActual.setTipoProducto(EdtFecha.getText().toString());
-        productoActual.setCantProducto(EdtPago.getText().toString());
+        Toast.makeText(this, "Cambios guardados", Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this, "Modificación Guardada: " + productoActual.getNomProd(), Toast.LENGTH_SHORT).show();
+        // Opcional: refrescar la lista al regresar
+        setResult(RESULT_OK);
     }
 }

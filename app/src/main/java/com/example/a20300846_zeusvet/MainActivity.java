@@ -1,12 +1,14 @@
-package com.example.torneo;
+package com.example.a20300846_zeusvet;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,13 +20,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import Pojo.producto;
-import Pojo.global.info;
-import adaptadores.adaptadoreliminar;
+import Global.info;
+import Adaptadores.adaptadoreliminar;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Declaración de variables como campos de la clase
-    EditText NomEqui, NomCap, Tel , HoraIns, TiempoIns, Pago;
+    // Declaración de variables como campos de la clase, actualizados
+    EditText NomComprador, TelComprador, Correo, NomProd, CantidadComp, TotalComp;
+    Spinner TipoProd; // El antiguo TiempoIns, ahora es un Spinner
     Button button, ButtonVer;
     Toolbar toolbar;
 
@@ -32,45 +35,61 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        // Debe usar el layout corregido que tiene todos los campos
         setContentView(R.layout.activity_main);
 
-        // Inicialización de Vistas (ya no debe marcar error)
-        NomEqui = findViewById(R.id.NombreEquipo);
-        NomCap = findViewById(R.id.NombreCapitan);
-        Tel = findViewById(R.id.Telefono);
-        HoraIns = findViewById(R.id.HoraInscripcion);
-        TiempoIns = findViewById(R.id.TiempoInscripcion);
-        Pago = findViewById(R.id.Pago);
+        // Inicialización de Vistas (Actualizada y corregida)
+        NomComprador = findViewById(R.id.NombreComprador); // Nombre del comprador
+        TelComprador = findViewById(R.id.Telefono); // Telefono
+        Correo = findViewById(R.id.Correo); // Correo
+        NomProd = findViewById(R.id.NombreProducto); // Nombre del producto
+        TipoProd = findViewById(R.id.TipoProducto); // Tipo de producto (Spinner)
+        CantidadComp = findViewById(R.id.CantidadComprada); // Cantidad de productos comprados
+        TotalComp = findViewById(R.id.TotalCompra); // Total de compra (Nuevo ID)
+
         button = findViewById(R.id.button);
         ButtonVer = findViewById(R.id.ButtonVer);
 
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Configurar el Spinner para Tipo de Producto
+        String[] tiposProducto = {"Shampoo", "Acondicionador", "Crema para peinar"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, tiposProducto);
+        TipoProd.setAdapter(adapter);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Lógica de guardado con los nuevos campos
                 producto nuevoProducto = new producto();
-                nuevoProducto.setNomProd(NomEqui.getText().toString());        // Nombre del Producto
-                nuevoProducto.setDescripcion(NomCap.getText().toString());     // Descripción
-                nuevoProducto.setPrecio(Tel.getText().toString());             // Precio
-                nuevoProducto.setStock(HoraIns.getText().toString());          // Stock
-                nuevoProducto.setTipoProducto(TiempoIns.getText().toString()); // Tipo de Producto
-                nuevoProducto.setCantProducto(Pago.getText().toString());      // Cantidad de Producto (Volumen/Peso)
+                nuevoProducto.setNombreComprador(NomComprador.getText().toString());
+                nuevoProducto.setTelefonoComprador(TelComprador.getText().toString());
+                nuevoProducto.setCorreoComprador(Correo.getText().toString());
+                nuevoProducto.setNombreProducto(NomProd.getText().toString());
+                nuevoProducto.setTipoProducto(TipoProd.getSelectedItem().toString()); // Valor del Spinner
+                nuevoProducto.setCantidadComprada(CantidadComp.getText().toString());
+                nuevoProducto.setTotalCompra(TotalComp.getText().toString()); // Nuevo campo
 
                 info.lista.add(nuevoProducto);
-                Toast.makeText(MainActivity.this, "Producto registrado: " + nuevoProducto.getNomProd(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Venta registrada: " + nuevoProducto.getNombreComprador(), Toast.LENGTH_SHORT).show();
 
-
+                // Opcional: limpiar campos
+                NomComprador.setText("");
+                TelComprador.setText("");
+                Correo.setText("");
+                NomProd.setText("");
+                CantidadComp.setText("");
+                TotalComp.setText("");
+                TipoProd.setSelection(0);
             }
         });
 
         ButtonVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent verActivity = new Intent(MainActivity.this, ver.class);
+                // Se navega a Lista_Dinamica.class, que es el visor de la lista.
+                Intent verActivity = new Intent(MainActivity.this, Lista_Dinamica.class);
                 startActivity(verActivity);
             }
         });

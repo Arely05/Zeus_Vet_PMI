@@ -10,9 +10,7 @@
     android:background="@color/Background"
     tools:context=".Modificar">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +26,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MODIFICAR PRODUCTO"
+                android:text="MODIFICAR VENTA"
                 android:textSize="22sp"
                 android:textColor="@color/Gray_Dark"
                 android:textStyle="bold"
@@ -36,7 +34,37 @@
                 android:layout_marginBottom="16dp"/>
 
             <EditText
-                android:id="@+id/Mod_NombreEquipo"
+                android:id="@+id/Mod_NombreComprador"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Nombre del Comprador"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="12dp"
+                android:inputType="textCapWords"
+                />
+
+            <EditText
+                android:id="@+id/Mod_Telefono"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Teléfono"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="12dp"
+                android:inputType="phone"
+                />
+
+            <EditText
+                android:id="@+id/Mod_Correo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Correo"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="12dp"
+                android:inputType="textEmailAddress"
+                />
+
+            <EditText
+                android:id="@+id/Mod_NombreProducto"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Nombre del Producto"
@@ -45,55 +73,43 @@
                 android:inputType="textCapWords"
                 />
 
-            <EditText
-                android:id="@+id/Mod_NombreCapitan"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo de Producto"
+                android:textColor="@color/Black"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"/>
+
+            <Spinner
+                android:id="@+id/Mod_TiempoInscripcion"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Descripción"
                 android:paddingStart="16dp"
                 android:layout_marginBottom="12dp"
-                android:inputType="textMultiLine"
+                android:background="@android:drawable/btn_dropdown"
                 />
 
             <EditText
-                android:id="@+id/Mod_Telefono"
+                android:id="@+id/Mod_Cantidad"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Precio"
-                android:paddingStart="16dp"
-                android:layout_marginBottom="12dp"
-                android:inputType="numberDecimal"
-                />
-
-            <EditText
-                android:id="@+id/Mod_HoraInscripcion"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Stock (Cantidad en inventario)"
+                android:hint="Cantidad de Productos Comprados"
                 android:paddingStart="16dp"
                 android:layout_marginBottom="12dp"
                 android:inputType="number"
                 />
 
             <EditText
-                android:id="@+id/Mod_TiempoInscripcion"
+                android:id="@+id/Mod_TotalCompra"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Tipo de Producto"
-                android:paddingStart="16dp"
-                android:layout_marginBottom="12dp"
-                android:inputType="textCapSentences"
-                />
-
-            <EditText
-                android:id="@+id/Mod_Pago"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Cantidad de Producto (Ej: 100ml, 5kg)"
+                android:hint="Total de la Compra"
                 android:paddingStart="16dp"
                 android:layout_marginBottom="24dp"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -136,6 +152,4 @@
             android:layout_marginStart="4dp"
             style="?attr/materialButtonOutlinedStyle" />
     </LinearLayout>
-
-
 </LinearLayout>

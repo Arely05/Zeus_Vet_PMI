@@ -26,42 +26,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/card_nombre"
+                android:id="@+id/card_nombrecomprador"
                 android:layout_width="313dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="10dp"
-                android:hint="Nombre"
+                android:hint="Nombre del Comprador"
                 android:textColor="@color/Black"
                 android:textColorHint="@color/Black"
                 android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/card_apellidos"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Apellidos"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/card_edad"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Edad"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
-
 
             <TextView
                 android:id="@+id/card_telefono"
                 android:layout_width="313dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="10dp"
-                android:hint="Telefono"
+                android:hint="Teléfono"
                 android:textColor="@color/Black"
                 android:textColorHint="@color/Black"
                 android:textSize="20sp" />
@@ -76,23 +55,44 @@
                 android:textColorHint="@color/Black"
                 android:textSize="20sp" />
 
+
             <TextView
-                android:id="@+id/card_shampoo"
+                android:id="@+id/card_nombreproducto"
                 android:layout_width="313dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="10dp"
-                android:hint="Nombre del producto"
+                android:hint="Nombre del Producto"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/card_producto"
+                android:layout_width="313dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Tipo de Producto"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/card_cantidad"
+                android:layout_width="313dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Cantidad Comprada"
                 android:textColor="@color/Black"
                 android:textColorHint="@color/Black"
                 android:textSize="20sp" />
 
 
             <TextView
-                android:id="@+id/card_mercancia"
+                android:id="@+id/card_total"
                 android:layout_width="313dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="10dp"
-                android:hint="Tipo de producto"
+                android:hint="Total de la Compra"
                 android:textColor="@color/Black"
                 android:textColorHint="@color/Black"
                 android:textSize="20sp" />

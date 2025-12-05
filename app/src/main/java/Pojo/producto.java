@@ -1,28 +1,44 @@
 package Pojo;
 
 public class producto {
-    String NomProd;
-    String Descripcion;
-    String Precio;
-    String Stock;
-    String TipoProducto;
-    String CantProducto;
+    // Nuevos campos para registro de Compra/Venta
+    String NombreComprador;
+    String TelefonoComprador;
+    String CorreoComprador;
+    String NombreProducto;
+    String TipoProducto; // Para el Spinner: shampoo, acondicionador, crema
+    String CantidadComprada;
+    String TotalCompra; // Campo nuevo
 
-    public String getNomProd() { return NomProd; }
-    public void setNomProd(String NomProd) { this.NomProd = NomProd; }
+    // Getters y Setters actualizados
+    public String getNombreComprador() { return NombreComprador; }
+    public void setNombreComprador(String NombreComprador) { this.NombreComprador = NombreComprador; }
 
-    public String getDescripcion() { return Descripcion; }
-    public void setDescripcion(String Descripcion) { this.Descripcion = Descripcion; }
+    public String getTelefono() { return TelefonoComprador; }
+    public void setTelefonoComprador(String TelefonoComprador) { this.TelefonoComprador = TelefonoComprador; }
 
-    public String getPrecio() { return Precio; }
-    public void setPrecio(String Precio) { this.Precio = Precio; }
+    public String getCorreo() { return CorreoComprador; }
+    public void setCorreoComprador(String CorreoComprador) { this.CorreoComprador = CorreoComprador; }
 
-    public String getStock() { return Stock; }
-    public void setStock(String Stock) { this.Stock = Stock; }
+    public String getNombreProducto() { return NombreProducto; }
+    public void setNombreProducto(String NombreProducto) { this.NombreProducto = NombreProducto; }
 
     public String getTipoProducto() { return TipoProducto; }
     public void setTipoProducto(String TipoProducto) { this.TipoProducto = TipoProducto; }
 
-    public String getCantProducto() { return CantProducto; }
-    public void setCantProducto(String CantProducto) { this.CantProducto = CantProducto; }
+    public String getCantidad() { return CantidadComprada; }
+    public void setCantidadComprada(String CantidadComprada) { this.CantidadComprada = CantidadComprada; }
+
+    public String getTotalCompra() { return TotalCompra; }
+    public void setTotalCompra(String TotalCompra) { this.TotalCompra = TotalCompra; }
+
+    public void setTelefono(String string) {
+    }
+
+    public void setCantidad(String string) {
+
+    }
+
+    public void setCorreo(String string) {
+    }
 }

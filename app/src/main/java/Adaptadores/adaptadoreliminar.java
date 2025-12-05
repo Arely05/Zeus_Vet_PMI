@@ -1,5 +1,3 @@
-package com.example.a20300846_zeusvet;
-
 package Adaptadores;
 
 import android.content.Context;
@@ -13,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import Global.info;
 import Pojo.producto;
+import com.example.a20300846_zeusvet.R; // Importar R del proyecto Zeus Vet
 
 public class adaptadoreliminar extends RecyclerView.Adapter<adaptadoreliminar.Miniactivity> {
 
@@ -25,15 +24,16 @@ public class adaptadoreliminar extends RecyclerView.Adapter<adaptadoreliminar.Mi
     @NonNull
     @Override
     public Miniactivity onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.eli, parent, false);
+        // Corregido para usar R.layout.eliminar (el layout del item de checkbox)
+        View view = LayoutInflater.from(context).inflate(R.layout.eliminar, parent, false);
         return new Miniactivity(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Miniactivity holder, int position) {
-        final producto productoActual = info.lista.get(position); // Usa 'producto'
+        final producto productoActual = info.lista.get(position);
 
-        holder.checkBox.setText(productoActual.getNomProd());
+        holder.checkBox.setText(productoActual.getNombreComprador());
         holder.checkBox.setChecked(info.listabaja.contains(productoActual));
 
         holder.checkBox.setOnClickListener(v -> {
@@ -52,13 +52,11 @@ public class adaptadoreliminar extends RecyclerView.Adapter<adaptadoreliminar.Mi
         return info.lista.size();
     }
 
-    // Estructura de ViewHolder verificada
     public static class Miniactivity extends RecyclerView.ViewHolder {
-        CheckBox checkBox; // Declaración de la variable miembro (campo de clase)
+        CheckBox checkBox;
 
         public Miniactivity(@NonNull View itemView) {
             super(itemView);
-            // Inicialización (donde te da error)
             checkBox = itemView.findViewById(R.id.CheckBox_Eliminar);
         }
     }
