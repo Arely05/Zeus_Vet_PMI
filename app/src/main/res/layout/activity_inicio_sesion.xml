@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="32dp"
+    tools:context=".Inicio_Sesion">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ZEUS VET"
+        android:textSize="48sp"
+        android:textColor="@color/Gray_Dark"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp"
+        />
+
+    <TextView
+        android:id="@+id/textView_Usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuario"
+        android:textSize="18sp"
+        android:textColor="@color/Black"
+        android:layout_marginBottom="4dp"
+        />
+
+    <EditText
+        android:id="@+id/Mod_Usuario"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Ingresa tu usuario"
+        android:paddingStart="16dp"
+        android:backgroundTint="@color/White"
+        android:layout_marginBottom="30dp"
+        android:elevation="2dp"
+        />
+
+    <TextView
+        android:id="@+id/textView_Contraseña"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contraseña"
+        android:textSize="18sp"
+        android:textColor="@color/Black"
+        android:layout_marginBottom="4dp"
+        />
+
+    <EditText
+        android:id="@+id/Mod_Contraseña"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Ingresa tu contraseña"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:backgroundTint="@color/White"
+        android:layout_marginBottom="60dp"
+        android:elevation="2dp"
+        />
+
+    <Button
+        android:id="@+id/Button_Inicio"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Iniciar Sesión"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/Gray_Cool"
+        android:textColor="@color/White"
+        android:elevation="4dp"
+        />
+
+</LinearLayout>

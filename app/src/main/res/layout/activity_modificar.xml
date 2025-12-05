@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/Background"
+    tools:context=".Modificar">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MODIFICAR PRODUCTO"
+                android:textSize="22sp"
+                android:textColor="@color/Gray_Dark"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/Mod_NombreEquipo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Nombre del Producto"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="12dp"
+                android:inputType="textCapWords"
+                />
+
+            <EditText
+                android:id="@+id/Mod_NombreCapitan"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Descripción"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="12dp"
+                android:inputType="textMultiLine"
+                />
+
+            <EditText
+                android:id="@+id/Mod_Telefono"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Precio"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="12dp"
+                android:inputType="numberDecimal"
+                />
+
+            <EditText
+                android:id="@+id/Mod_HoraInscripcion"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Stock (Cantidad en inventario)"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="12dp"
+                android:inputType="number"
+                />
+
+            <EditText
+                android:id="@+id/Mod_TiempoInscripcion"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Tipo de Producto"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="12dp"
+                android:inputType="textCapSentences"
+                />
+
+            <EditText
+                android:id="@+id/Mod_Pago"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Cantidad de Producto (Ej: 100ml, 5kg)"
+                android:paddingStart="16dp"
+                android:layout_marginBottom="24dp"
+                android:inputType="text"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@color/Gray_Neutral">
+
+        <Button
+            android:id="@+id/Button_Anterior"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Anterior"
+            android:backgroundTint="@color/Gray_Dark"
+            android:textColor="@color/White"
+            android:layout_marginEnd="4dp"
+            style="?attr/materialButtonOutlinedStyle" />
+
+        <Button
+            android:id="@+id/Button_Guardar"
+            android:layout_height="50dp"
+            android:layout_weight="1.5"
+            android:text="Guardar"
+            android:backgroundTint="@color/Primary"
+            android:textColor="@color/White"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            style="?attr/materialButtonStyle" />
+
+        <Button
+            android:id="@+id/Button_Siguiente"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Siguiente"
+            android:backgroundTint="@color/Gray_Dark"
+            android:textColor="@color/White"
+            android:layout_marginStart="4dp"
+            style="?attr/materialButtonOutlinedStyle" />
+    </LinearLayout>
+
+
+</LinearLayout>
