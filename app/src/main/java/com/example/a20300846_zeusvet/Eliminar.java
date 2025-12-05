@@ -21,6 +21,10 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import Adaptadores.adaptadoreliminar;
 import Global.info;
 import Pojo.producto;
@@ -40,24 +44,19 @@ public class Eliminar extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_eliminar);
 
-        // 1. Configurar Toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // 2. Inicializar Vistas
         rueliminar = findViewById(R.id.Eliminar);
         elim = findViewById(R.id.Button_Eliminar);
 
-        // 3. Inicializar Sesión (para el menú de cerrar sesión)
         archivo = this.getSharedPreferences("Sesion", Context.MODE_PRIVATE);
 
-        // 4. Configurar RecyclerView
         adaptador = new adaptadoreliminar(this);
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rueliminar.setAdapter(adaptador);
         rueliminar.setLayoutManager(llm);
 
-        // 5. Lógica de Eliminación
         elim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,15 +65,15 @@ public class Eliminar extends AppCompatActivity {
                     return;
                 }
 
-                // Eliminación local de las listas en memoria
+                for (producto p : info.listabaja) {
+                    eliminarDeBD(p.getId_venta());
+                }
+
                 info.lista.removeAll(info.listabaja);
                 info.listabaja.clear();
                 adaptador.notifyDataSetChanged();
 
-                // Nota: Si deseas eliminar también de la BD remota, aquí deberías agregar la petición Volley
-                // similar a como se hizo en Modificar.java, iterando sobre info.listabaja antes de borrarla.
-
-                Toast.makeText(Eliminar.this, "Ventas eliminadas correctamente.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Eliminar.this, "Procesando eliminación...", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -85,6 +84,20 @@ public class Eliminar extends AppCompatActivity {
         });
     }
 
+    private void eliminarDeBD(int idVenta) {
+        String url = "http://10.0.2.2/bd/eliminar.php?id=" + idVenta;
+
+        StringRequest request = new StringRequest(Request.Method.GET, url,
+                response -> {
+                },
+                error -> {
+                    Toast.makeText(Eliminar.this, "Error al eliminar venta ID: " + idVenta, Toast.LENGTH_SHORT).show();
+                }
+        );
+
+        Volley.newRequestQueue(this).add(request);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -93,7 +106,6 @@ public class Eliminar extends AppCompatActivity {
         }
     }
 
-    // --- LÓGICA DE MENÚ UNIFICADO ---
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -117,14 +129,12 @@ public class Eliminar extends AppCompatActivity {
         } else if (id == R.id.menu_lista) {
             intent = new Intent(this, Lista_Dinamica.class);
         } else if (id == R.id.menu_modificar_nav) {
-            // CORRECCIÓN 1: Evitar el crash si la lista está vacía al intentar modificar
             if (info.lista.isEmpty()) {
                 Toast.makeText(this, "No hay ventas registradas para modificar.", Toast.LENGTH_SHORT).show();
                 return true;
             }
             intent = new Intent(this, Modificar.class);
         } else if (id == R.id.opc1) {
-            // Ya estamos en Eliminar
             return true;
         } else if (id == R.id.menu_cerrar_sesion) {
             SharedPreferences.Editor editor = archivo.edit();
@@ -134,10 +144,9 @@ public class Eliminar extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         }
 
-        // CORRECCIÓN 2: Iniciar la actividad si se creó un Intent
         if (intent != null) {
             startActivity(intent);
-            return true; // Se maneja el evento
+            return true;
         }
 
         return false;

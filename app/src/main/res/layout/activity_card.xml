@@ -2,110 +2,186 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Card"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/Background"
+    tools:context=".Card">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/l_card"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="339dp"
-        android:layout_gravity="center"
-        android:layout_margin="40dp">
-
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:padding="20dp">
 
-            <TextView
-                android:id="@+id/card_nombrecomprador"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Nombre del Comprador"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/l_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                android:backgroundTint="@color/White">
 
-            <TextView
-                android:id="@+id/card_telefono"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Teléfono"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
 
-            <TextView
-                android:id="@+id/card_correo"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Correo"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DETALLES DEL CLIENTE"
+                        android:textStyle="bold"
+                        android:textColor="@color/Primary"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="8dp"/>
 
+                    <TextView
+                        android:id="@+id/card_nombrecomprador"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre del Comprador"
+                        android:textColor="@color/Black"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
 
-            <TextView
-                android:id="@+id/card_nombreproducto"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Nombre del Producto"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
 
-            <TextView
-                android:id="@+id/card_producto"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Tipo de Producto"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/sym_action_call"
+                            app:tint="@color/Gray_Cool"
+                            android:layout_marginEnd="8dp"/>
 
-            <TextView
-                android:id="@+id/card_cantidad"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Cantidad Comprada"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/card_telefono"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="55-1234-5678"
+                            android:textColor="@color/Blue"
+                            android:textSize="18sp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="4dp"/>
+                    </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/card_correo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="correo@ejemplo.com"
+                        android:textColor="@color/Gray_Dark"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="20dp" />
 
-            <TextView
-                android:id="@+id/card_total"
-                android:layout_width="313dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Total de la Compra"
-                android:textColor="@color/Black"
-                android:textColorHint="@color/Black"
-                android:textSize="20sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/Gray_Neutral"
+                        android:layout_marginBottom="20dp"/>
 
-            <Button
-                android:id="@+id/b_llamar"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/Primary"
-                android:text="Llamar"
-                android:textColor="@color/White"
-                app:icon="@android:drawable/stat_sys_phone_call" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DETALLES DEL PEDIDO"
+                        android:textStyle="bold"
+                        android:textColor="@color/Primary"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/card_nombreproducto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre Específico del Producto"
+                        android:textColor="@color/Black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/card_producto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo: Shampoo"
+                        android:textColor="@color/Gray_Dark"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cantidad: "
+                            android:textColor="@color/Black"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/card_cantidad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textColor="@color/Black"
+                            android:layout_marginEnd="20dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total: "
+                            android:textColor="@color/Black"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/card_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$150.00"
+                            android:textColor="@color/Secondary"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/b_llamar"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:backgroundTint="@color/Primary"
+                        android:text="LLAMAR AL CLIENTE"
+                        android:textColor="@color/White"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        app:icon="@android:drawable/stat_sys_phone_call"
+                        app:iconGravity="textStart"
+                        app:iconPadding="10dp"
+                        android:elevation="4dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 </LinearLayout>

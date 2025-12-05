@@ -26,7 +26,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Inicio_Sesion extends AppCompatActivity { // ⬅️ Clase renombrada y corregida
+public class Inicio_Sesion extends AppCompatActivity {
 
     EditText Usuario, Contrasena;
     Button ButtonInicio;
@@ -36,7 +36,7 @@ public class Inicio_Sesion extends AppCompatActivity { // ⬅️ Clase renombrad
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_inicio_sesion); // ⬅️ Layout corregido
+        setContentView(R.layout.activity_inicio_sesion);
 
         Usuario = findViewById(R.id.Mod_Usuario);
         Contrasena = findViewById(R.id.Mod_Contraseña);
