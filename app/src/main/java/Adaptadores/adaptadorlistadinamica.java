@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.a20300846_zeusvet.Modificar;
+import com.example.a20300846_zeusvet.Card;
 import com.example.a20300846_zeusvet.R;
 
 import Global.info;
@@ -37,12 +37,13 @@ public class adaptadorlistadinamica extends RecyclerView.Adapter<adaptadorlistad
 
         producto productoActual = info.lista.get(position);
 
-        holder.NombreEq.setText(productoActual.getNombreComprador());
-        holder.NombreCap.setText(productoActual.getTotalCompra());
+        holder.NombreEq.setText(productoActual.getIdentificador());
 
-        // CLICK -> ABRIR MODIFICAR.JAVA
+        String descripcion = productoActual.getNombreProducto() + " - $" + productoActual.getTotal_final();
+        holder.NombreCap.setText(descripcion);
+
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, Modificar.class);
+            Intent intent = new Intent(context, Card.class);
             intent.putExtra("posicion", position);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -60,7 +61,6 @@ public class adaptadorlistadinamica extends RecyclerView.Adapter<adaptadorlistad
 
         public Miniactivity(@NonNull View itemView) {
             super(itemView);
-
             NombreEq = itemView.findViewById(R.id.ListaEqui);
             NombreCap = itemView.findViewById(R.id.ListaCapi);
         }

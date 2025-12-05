@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -8,14 +9,11 @@
     android:background="@color/Background"
     tools:context=".Eliminar">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SELECCIONA PRODUCTOS A ELIMINAR"
+        android:text="SELECCIONA VENTAS A ELIMINAR"
         android:textSize="20sp"
         android:textColor="@color/Black"
         android:padding="16dp"

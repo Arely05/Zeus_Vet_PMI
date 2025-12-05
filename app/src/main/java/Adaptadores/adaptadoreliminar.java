@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import Global.info;
 import Pojo.producto;
-import com.example.a20300846_zeusvet.R; // Importar R del proyecto Zeus Vet
+import com.example.a20300846_zeusvet.R;
 
 public class adaptadoreliminar extends RecyclerView.Adapter<adaptadoreliminar.Miniactivity> {
 
@@ -24,7 +24,6 @@ public class adaptadoreliminar extends RecyclerView.Adapter<adaptadoreliminar.Mi
     @NonNull
     @Override
     public Miniactivity onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Corregido para usar R.layout.eliminar (el layout del item de checkbox)
         View view = LayoutInflater.from(context).inflate(R.layout.eliminar, parent, false);
         return new Miniactivity(view);
     }
@@ -33,7 +32,8 @@ public class adaptadoreliminar extends RecyclerView.Adapter<adaptadoreliminar.Mi
     public void onBindViewHolder(@NonNull Miniactivity holder, int position) {
         final producto productoActual = info.lista.get(position);
 
-        holder.checkBox.setText(productoActual.getNombreComprador());
+        holder.checkBox.setText(productoActual.getIdentificador());
+
         holder.checkBox.setChecked(info.listabaja.contains(productoActual));
 
         holder.checkBox.setOnClickListener(v -> {
