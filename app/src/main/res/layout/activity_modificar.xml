@@ -10,7 +10,9 @@
     android:background="@color/Background"
     tools:context=".Modificar">
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -133,6 +135,7 @@
 
         <Button
             android:id="@+id/Button_Guardar"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1.5"
             android:text="Guardar"
@@ -144,6 +147,7 @@
 
         <Button
             android:id="@+id/Button_Siguiente"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:text="Siguiente"

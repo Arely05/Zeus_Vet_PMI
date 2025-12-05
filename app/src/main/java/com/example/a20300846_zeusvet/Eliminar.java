@@ -1,5 +1,6 @@
 package com.example.a20300846_zeusvet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ public class Eliminar extends AppCompatActivity {
     Toolbar toolbar;
     SharedPreferences archivo;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +117,11 @@ public class Eliminar extends AppCompatActivity {
         } else if (id == R.id.menu_lista) {
             intent = new Intent(this, Lista_Dinamica.class);
         } else if (id == R.id.menu_modificar_nav) {
+            // CORRECCIÓN 1: Evitar el crash si la lista está vacía al intentar modificar
+            if (info.lista.isEmpty()) {
+                Toast.makeText(this, "No hay ventas registradas para modificar.", Toast.LENGTH_SHORT).show();
+                return true;
+            }
             intent = new Intent(this, Modificar.class);
         } else if (id == R.id.opc1) {
             // Ya estamos en Eliminar
@@ -126,6 +133,13 @@ public class Eliminar extends AppCompatActivity {
             intent = new Intent(this, Inicio_Sesion.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         }
+
+        // CORRECCIÓN 2: Iniciar la actividad si se creó un Intent
+        if (intent != null) {
+            startActivity(intent);
+            return true; // Se maneja el evento
+        }
+
         return false;
     }
 }

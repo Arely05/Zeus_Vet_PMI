@@ -8,6 +8,10 @@
     android:background="@color/Background"
     tools:context=".Eliminar">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +36,7 @@
         android:id="@+id/Button_Eliminar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="ELIMINAR PRODUCTOs SELECCIONADOS"
+        android:text="ELIMINAR PRODUCTOS SELECCIONADOS"
         android:textSize="18sp"
         android:textStyle="bold"
         android:backgroundTint="@color/Gray_Cool"

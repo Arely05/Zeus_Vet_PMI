@@ -117,9 +117,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(eliminar);
             return true;
         } else if (id == R.id.menu_modificar_nav) {
+            // CORRECCIÓN: Verificar si la lista está vacía antes de intentar modificar
+            if (info.lista.isEmpty()) {
+                Toast.makeText(this, "No hay ventas registradas para modificar.", Toast.LENGTH_SHORT).show();
+                return true; // Consume el evento del menú y evita el crash
+            }
             // Ir a Modificar
-            // NOTA: Al ir desde el menú, no llevamos una posición específica,
-            // por lo que Modificar.java abrirá el registro 0 (el primero) por defecto.
             Intent modificar = new Intent(this, Modificar.class);
             startActivity(modificar);
             return true;
