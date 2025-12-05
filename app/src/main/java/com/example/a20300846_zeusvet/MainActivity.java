@@ -109,9 +109,35 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.opc1){
-            Intent eliminar=new Intent(this, Eliminar.class);
+        int id = item.getItemId();
+
+        if (id == R.id.opc1) {
+            // Ir a Eliminar
+            Intent eliminar = new Intent(this, Eliminar.class);
             startActivity(eliminar);
+            return true;
+        } else if (id == R.id.menu_modificar_nav) {
+            // Ir a Modificar
+            // NOTA: Al ir desde el menú, no llevamos una posición específica,
+            // por lo que Modificar.java abrirá el registro 0 (el primero) por defecto.
+            Intent modificar = new Intent(this, Modificar.class);
+            startActivity(modificar);
+            return true;
+        } else if (id == R.id.menu_lista) {
+            // Ir a Lista (Ver Ventas)
+            Intent lista = new Intent(this, Lista_Dinamica.class);
+            startActivity(lista);
+            return true;
+        } else if (id == R.id.menu_registro) {
+            // Ya estamos en Registro (MainActivity), no hacemos nada o mostramos un mensaje
+            return true;
+        } else if (id == R.id.menu_cerrar_sesion) {
+            // Cerrar Sesión (Lógica copiada de tu Eliminar.java para consistencia)
+            getSharedPreferences("Sesion", MODE_PRIVATE).edit().clear().apply();
+            Intent login = new Intent(this, Inicio_Sesion.class);
+            login.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(login);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

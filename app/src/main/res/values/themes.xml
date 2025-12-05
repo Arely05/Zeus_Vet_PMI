@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme._20300846_ZeusVet" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme._20300846_ZeusVet" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/Primary</item>
     </style>
 
-    <style name="Theme._20300846_ZeusVet" parent="Base.Theme._20300846_ZeusVet" />
+    <style name="Base.Theme._20300846_ZeusVet" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/Primary</item>
+    </style>
 </resources>
